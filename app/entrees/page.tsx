@@ -4,15 +4,15 @@ import React, { useState, useEffect } from 'react';
 
 
 
-export default async function Entrees() {  
+export default function Entrees() {  
     const router = useRouter()
     const [entrees, setEntrees] = useState("");
 
-    useEffect(() => {
-        const res = async() => {
-            await fetch('entrees.txt');
-        }
-        let entrees = res();
+    useEffect( () => {
+        fetch('entrees.txt')
+            .then(response => response.text())
+            .then(data => setEntrees(data))
+        
     }, []);
 
     return (
